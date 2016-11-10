@@ -89,8 +89,12 @@ def import_inventory(filename="import_inventory.csv"):
         item = line.strip().split(sep=',')
         inv = add_item(inv, item[header.index("item_name")].strip(),
                        int(item[header.index("count")].strip()))
+    inventory_file.close
     display_inventory(inv)
 
+
+def export_inventory(filename="export_inventory.csv"):
+    export_file = open(filename, mode='w')
 
 dragon_loot = ['gold coin', 'dagger', 'gold coin', 'gold coin', 'ruby']
 inv = add_to_inventory(inv, dragon_loot)
