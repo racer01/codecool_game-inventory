@@ -94,11 +94,19 @@ def import_inventory(filename="import_inventory.csv"):
 
 
 def export_inventory(filename="export_inventory.csv"):
-    export_file = open(filename, mode='w')
+    """ Step 5 """
+    global inv
+    export_file = open(filename, mode='w').close  # clear file
+    export_file = open(filename, mode='a')
+    export_file.write("count,item_name\n")
+    for item in inv:
+        export_file.write(str(inv[item]) + "," + item + "\n")
+    export_file.close
 
 dragon_loot = ['gold coin', 'dagger', 'gold coin', 'gold coin', 'ruby']
 inv = add_to_inventory(inv, dragon_loot)
 display_inventory(inv)
 # print_table("count,desc")
 
-import_inventory()
+import_inventory("asdasd.csv")
+# export_inventory()
