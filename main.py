@@ -78,11 +78,23 @@ def print_table(order):
     print("Total number of items:", count_values(inv))
 
 
-def import_inventory(filename):
+def import_inventory(filename="import_inventory.csv"):
     """ Step 4 """
-    pass
+    global inv
+    inventory_file = open(filename)
+    header = str(inventory_file.readline()).strip().split(sep=',')
+    for i in range(len(header)):
+        header[i] = header[i].strip()
+    for line in inventory_file:
+        item = line.strip().split(sep=',')
+        inv = add_item(inv, item[header.index("item_name")].strip(),
+                       int(item[header.index("count")].strip()))
+    display_inventory(inv)
+
 
 dragon_loot = ['gold coin', 'dagger', 'gold coin', 'gold coin', 'ruby']
 inv = add_to_inventory(inv, dragon_loot)
-# display_inventory(inv)
-print_table("count,desc")
+display_inventory(inv)
+# print_table("count,desc")
+
+import_inventory()
