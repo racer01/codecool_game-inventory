@@ -3,6 +3,15 @@ inv = {'rope': 1, 'torch': 6, 'gold coin': 42, 'dagger': 1, 'arrow': 12}
 
 # helpers
 
+def add_item(inventory, item_name, item_value=1):
+    """ Returns new dict with new added item"""
+    if item_name in inventory.keys():
+        inventory[item_name] += item_value
+    else:
+        inventory[item_name] = item_value
+    return inventory
+
+
 def count_values(inventory):
     """ Returns sum of a dictionary's values """
     itemCount = 0
@@ -35,10 +44,7 @@ def display_inventory(inventory):
 def add_to_inventory(inventory, added_items):
     """ Step 2 """
     for item in added_items:
-        if item in inventory.keys():
-            inventory[item] += 1
-        else:
-            inventory[item] = 1
+        inventory = add_item(inventory, item)
     return inventory
 
 
@@ -71,6 +77,10 @@ def print_table(order):
                  2 + maxNameLength))
     print("Total number of items:", count_values(inv))
 
+
+def import_inventory(filename):
+    """ Step 4 """
+    pass
 
 dragon_loot = ['gold coin', 'dagger', 'gold coin', 'gold coin', 'ruby']
 inv = add_to_inventory(inv, dragon_loot)
